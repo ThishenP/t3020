@@ -15,9 +15,10 @@ import sys
 
 origin=sys.argv[1]
 
+
 def calc_total(curr):
     computed=0
-    for c in curr[2:9]: #E1
+    for c in curr[1:9]: #E1
         computed=computed+c
     return computed
 
@@ -26,16 +27,19 @@ def check_monotonic(prev,curr):
    # Now check monotonicity and update  prev so next time round we compare
    # against this row
     for i in range(9):
-        if curr[i] <=  prev[i]:  #E2
+        if curr[i] < prev[i]:  #E2
             print("Monotonic error at column %d comparing lines %d and %d  "%(i,n-1,n),
                      "values %d and %d"%(curr[i],prev[i]))
+            return False
+            #returns false if not monotonic
         prev[i]=curr[i]  
-
+    return True
+    #returns true if monotonic
 
 def check_row(n, prev, curr_str):
     data = []
     curr = []
-    for d in curr_str: #E3
+    for d in curr_str[0:9]: #E3
         try:
             v = int(d)
             curr.append(v)
@@ -49,6 +53,10 @@ def check_row(n, prev, curr_str):
     return True # if there all data was there
 
 
+#to ensure program does not take terminal args for origin when being tested. Due to the fact that discover would 
+# be set as the origin when running tests using dicovery. It defualts to data.csv for tests.
+if __name__ != "__main__":
+    origin ='code/data.csv'
 
 
 if "http" in origin:
@@ -65,9 +73,10 @@ prev = [0,0,0,0,0,0,0,0,0,0]
 missing=0
 n=1
 for  line in inp:
-     n=n+1
-     str_vals  = get_text(line).strip().split(",")
-     ok = check_row(n,prev,str_vals)
-     if not ok:
-         missing = missing+1
+    n=n+1
+    str_vals  = get_text(line).strip().split(",")
+    ok = check_row(n,prev,str_vals)
+    if not ok:
+        missing = missing+1
 print("There were ",missing," missing lines")
+
