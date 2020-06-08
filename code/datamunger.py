@@ -1,11 +1,6 @@
 
-<<<<<<< HEAD
 
 import urllib 
-=======
-print("Scott was here")
-import urllib
->>>>>>> 9687048e79bdd969e954fdef3157d37084cab4e6
 import urllib.request
 import ssl
 import sys
