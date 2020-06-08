@@ -1,7 +1,7 @@
 
 # T3020   Repo for ELEN3020
 
-Name: Scott Hazelhurst, Thishen Packirisamy
+Name: Scott Hazelhurst, Thishen Packirisamy, Scott Hazelhurst
 Date: 7 June
 
 
